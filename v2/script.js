@@ -17,22 +17,29 @@ function desenhaTabela(){
                                                                     </tr>`
     }
 }
+var a = qtdAlunos
 function addColuna(){
-    qtdNotas++;
+   a++
     for (let x = 1;  x <= qtdAlunos; x++) {
-        for (let n = 1; n <= qtdNotas; n++) {
+
             let coluna = document.getElementById(`linha${x}`).innerHTML;
-            document.getElementById(`linha${x}`).id = coluna + `<td><input type="number" class="form-control" id="nota${x}${n}" min="0" max="100" placeholder=""></td>`
-        }
-        
+            let i = coluna.indexOf('<td><output id="media');
+            coluna= coluna.substring(0,i);
+
+            coluna  += `<td><input type="number" class="form-control" id="nota${x}${a}" min="0" max="100" placeholder=""></td>`;
+
+            coluna += `<td><output id="media${x}"></output></td>
+                       <td><output id="situacao${x}"></output></td>`;
+
+            document.getElementById(`linha${x}`).innerHTML = coluna;    
     }
-    n++;
+
 }
 function addLinha(){
     qtdAlunos++;
     for(let j = i; j<= qtdAlunos; j++){
         let linhaVelha = document.getElementById('tbody').innerHTML;
-        document.getElementById('tbody').innerHTML = linhaVelha + `<tr>
+        document.getElementById('tbody').innerHTML = linhaVelha + `<tr id="linha${j}">
                                                                         <th>${i}</th>
                                                                         <td><input type="text" class="form-control" id="nome${i}" placeholder="nome"></td>
                                                                         <td><input type="number" class="form-control" id="nota${i}1" min="0" max="100" placeholder=""></td>
@@ -87,18 +94,5 @@ function calcularMedia(){
             }  
         }
     } 
-} 
-
-
-function ordenarCrescente(){
-   
-    
 }
 
-function ordenarDecrescente(){
-    for (let i = 0; i <= qtdAlunos - 1; i++) {
-        crescente[i] = document.getElementById(`media${i + 1}`).value;
-    }
-    let decrescente = crescente.reverse();
-    
-}
